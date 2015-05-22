@@ -38,7 +38,12 @@ body.album {
     font-weight: 300;
     font-size: 0.75rem;
 }
-.album-view-song-item {
+
+
+
+
+
+.album-view-song-item , .heading{
     height: 3rem;
     border-bottom: 1px solid rgba(255,255,255,0.5);
 }
