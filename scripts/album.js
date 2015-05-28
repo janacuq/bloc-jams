@@ -33,14 +33,14 @@ var albumBattiato = {
     name: 'Nomadas',
     artist: 'Franco Battiato',
     label: 'EM',
-    year: '1980',
-    albumArtUrl: 'assets/images/album_covers/04.png',
+    year: '1909',
+    albumArtUrl: 'assets/images/album_covers/20.png',
     songs: [
-        { name: 'Jabali', length: '1:01' },
-        { name: 'Toc, toc, toc', length: '5:01' },
-        { name: 'Fits in your pocket', length: '3:21'},
-        { name: 'Can you hear me now?', length: '3:14' },
-        { name: 'Wrong phone number', length: '2:15'}
+        { name: 'Jabali Blanco', length: '1:01' },
+        { name: 'Centro de Gravedad', length: '5:01' },
+        { name: 'Cucu', length: '3:21'},
+        { name: 'ABndera Blanca', length: '3:14' },
+        { name: 'number', length: '2:15'}
     ]
 };
 
@@ -75,45 +75,31 @@ var setCurrentAlbum = function(album) {
         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
     }
 };
-                                                 
+  
+var cover = document.getElementsByClassName('album-cover-art')[0];
+
 window.onload = function () {
             
                 setCurrentAlbum(albumPicasso);
     
-    
-    var cover = document.getElementsByClassName('album-cover-art')[0];
-    
-    
-  
-    cover.addEventListener("click", function(event) {     
-    
- cover.addEventListener("click", function(event) {
+
+
+   cover.addEventListener('click', function(event) {
        
-                   
-    setCurrentAlbum(albumMarconi);
-        
-          
-         cover.addEventListener("click", function(event) {
+       var currentAlbum = document.getElementsByClassName('album-view-title')[0].firstChild.nodeValue
        
-                   
-            setCurrentAlbum(albumBattiato);
-             
-             
-                cover.addEventListener("click", function(event) {
-       
-                   
-                    setCurrentAlbum(albumPicasso);
-                           
-                });   
-             
-             
-         });
-        
-    });
-      
-}          
-                                                 
+       if ( currentAlbum == 'The Colors') {
+           setCurrentAlbum(albumMarconi);
+       } else  if ( currentAlbum == 'The Telephone'){
+           setCurrentAlbum(albumBattiato);
+       } else {
+           setCurrentAlbum(albumPicasso)
+       }
+     
+   });
 }
+      
+
                                                  
                                                  
                                                  
