@@ -44,9 +44,11 @@ body.album {
 }
 .song-item-number {
     width: 5%;
+     
 }
 .song-item-title {
     width: 85%;
+    font-family: Verdana;
 }
 
 .song-item-duration {

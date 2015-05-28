@@ -1,9 +1,9 @@
-var = albumPicasso = {
+var albumPicasso = {
     name: 'The Colors',
     artist: 'Pablo Picasso',
     label: 'Cubism',
     year: '1881',
-    albumArtUrl: '/assets/images/album_covers/01.png',
+    albumArtUrl: 'assets/images/album_covers/01.png',
     songs: [
         { name: 'Blue', length: '4:26' },
         { name: 'Green', length: '3:14' },
@@ -31,11 +31,11 @@ var albumMarconi = {
 
 var createSongRow = function(songNumber, songName, songLength) {
     
-    var template = 
-        '<tr class="album-view-song-item>'
-        + ' <td class="song-item-number">' + songNumber + '</td>'
-        +'  <td class="song-item-title">' + songName + '</td>'
-        +'  <td class="song-item-duration">' + songLength + '</td>'
+    var template =
+        '<tr class="album-view-song-item">'
+        + '  <td class="song-item-number">' + songNumber + '</td>'
+        + '  <td class="song-item-title">' + songName + '</td>'
+        + '  <td class="song-item-duration">' + songLength + '</td>'
         +'</tr>'
         ;
         return template;
@@ -57,7 +57,7 @@ var setCurrentAlbum = function(album) {
     albumSongList.innerHTML = ' ';
     
     for (i = 0; i<album.songs.length; i++) {
-        albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].length;
+        albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
     }
 };
                                                  
