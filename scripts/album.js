@@ -29,6 +29,21 @@ var albumMarconi = {
     ]
 };
 
+var albumBattiato = {
+    name: 'Nomadas',
+    artist: 'Franco Battiato',
+    label: 'EM',
+    year: '1980',
+    albumArtUrl: 'assets/images/album_covers/04.png',
+    songs: [
+        { name: 'Jabali', length: '1:01' },
+        { name: 'Toc, toc, toc', length: '5:01' },
+        { name: 'Fits in your pocket', length: '3:21'},
+        { name: 'Can you hear me now?', length: '3:14' },
+        { name: 'Wrong phone number', length: '2:15'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     
     var template =
@@ -64,13 +79,41 @@ var setCurrentAlbum = function(album) {
 window.onload = function () {
             
                 setCurrentAlbum(albumPicasso);
-};
+    
+    
+    var cover = document.getElementsByClassName('album-cover-art')[0];
+    
+    
+  
+    cover.addEventListener("click", function(event) {     
+    
+ cover.addEventListener("click", function(event) {
+       
+                   
+    setCurrentAlbum(albumMarconi);
+        
+          
+         cover.addEventListener("click", function(event) {
+       
+                   
+            setCurrentAlbum(albumBattiato);
+             
+             
+                cover.addEventListener("click", function(event) {
+       
+                   
+                    setCurrentAlbum(albumPicasso);
+                           
+                });   
+             
+             
+         });
+        
+    });
+      
+}          
                                                  
-                                                 
-                                                 
-                                                 
-                                                 
-                                                 
+}
                                                  
                                                  
                                                  
