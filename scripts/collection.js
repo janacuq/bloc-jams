@@ -25,7 +25,7 @@ var template =
 
 $(window).load(function() {
     
-    var $collectionContainer = $('.album-covers.clearfix');
+    var $collectionContainer = $('.album-covers .clearfix');
     
     $collectionContainer.empty();
  

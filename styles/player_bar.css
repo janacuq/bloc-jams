@@ -28,16 +28,34 @@
 }
 
 .player-bar .left-controls {
-    width: 25%;
+    width: 15%;
     text-align: left;
     padding-right: 1rem;
 }
 
 .player-bar .right-controls {
-    width: 25%;
+    width: 15%;
     text-align: right;
+    padding-left: 1rem;
+    
 }
 
+.player-bar .volume {
+    display: inline-block;
+}
+
+player-bar .volume i {
+    width: 2.25rem;
+    font-size: 1.1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.player-bar .volume .seek-bar {
+    display: inline-block;
+    width: 5.75rem;
+    vertical-align: middle;
+}
 /*current playing*/
 .player-bar .currently-playing {
     width: 50%;
@@ -84,6 +102,8 @@
     right: 0;
     top: 0.5rem;
 }
+
+
 
 .seek-bar {
     height: 0.25rem;
