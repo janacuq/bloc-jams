@@ -1,4 +1,4 @@
-var myAppModule = angular.module('myapp',['ui-router']);
+var myAppModule = angular.module('myapp',['ui.router']);
 
 myAppModule.config(['$stateProvider','$locationProvider', function($stateProvider, $locationProvider) {
     $locationProvider.html5Mode({
@@ -15,7 +15,7 @@ myAppModule.config(['$stateProvider','$locationProvider', function($stateProvide
     $stateProvider.state('landing', {
         url: '/landing',
         controller: 'Landing.controller',
-        templateUrl: '/templates/album.html'
+        templateUrl: '/templates/landing.html'
     });
     
     $stateProvider.state('collection', {
@@ -23,4 +23,12 @@ myAppModule.config(['$stateProvider','$locationProvider', function($stateProvide
         controller: 'Collection.controller',
         templateUrl: '/templates/collection.html'
     });
+}]);
+
+
+myAppModule.controller('Landing.controller', ['$scope', function($scope) {
+        $scope.subText = 'Turn up music';
+    $scope.addExclamation = function() {
+        $scope.subText += '!';
+    };
 }]);
