@@ -23,12 +23,11 @@ myAppModule.config(['$stateProvider','$locationProvider', function($stateProvide
         controller: 'Collection.controller',
         templateUrl: '/templates/collection.html'
     });
-}]);
+}]);();
 
 
 myAppModule.controller('Landing.controller', ['$scope', function($scope) {
         $scope.subText = 'Turn up music';
-    $scope.addExclamation = function() {
-        $scope.subText += '!';
+    
     };
 }]);
