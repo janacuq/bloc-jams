@@ -20,15 +20,22 @@ var createSongRow = function(songNumber, songName, songLength) {
       currentlyPlayingCell.html(currentlyPlayingSongNumber);
     } 
     if (currentlyPlayingSongNumber !== songNumber) {
-      $(this).html(pauseButtonTemplate);
-      setSong(songNumber)
+      
+      setSong(songNumber);
+        currentSoundFile.play();
         updatePlayerBarSong();
+        $(this).html(pauseButtonTemplate);
     }
     else if (currentlyPlayingSongNumber === songNumber) {
-      $(this).html(playButtonTemplate);
+        if (currentSoundFile.isPaused()) {  
+      $(this).html(pauseButtonTemplate);
+      $('.left-controls .play-pause').html(playerBarPauseButton);
+      currentSoundFile.play();
+    } else {
+        $(this).html(playButtonTemplate);
       $('.left-controls .play-pause').html(playerBarPlayButton);
-      currentlyPlayingSongNumber = null;
-      currentSongFromAlbum = null;
+        currentSoundFile.pause();
+    }
     }
   };
 
@@ -83,12 +90,29 @@ var trackIndex = function(album, song) {
 };
 
 var setSong = function(songNumber) {
+    
+    if (currentSoundFile) {
+        currentSoundFile.stop();
+    }
 
   currentlyPlayingSongNumber = parseInt(songNumber);
   currentSongFromAlbum = currentAlbum.songs[songNumber];
-
+    
+    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+        formats: ['mp3'],
+        preload: true
+    });
+    setVolume(currentVolume);
 };
 
+
+var setVolume = function(volume) {
+    
+    if (currentSoundFile) {
+        currentSoundFile.setVolume(volume);
+    }
+};
+    
 var getSongNumberCell = function(number) {
 
   return $('.song-item-number[data-song-number="' + number + '"]');
@@ -109,6 +133,7 @@ var nextSong = function() {
   }
 
   setSong(currentSongIndex);
+    currentSoundFile.play();
   updatePlayerBarSong();
 
   var lastSongNumber = getLastSongNumber(currentSongIndex);
@@ -134,6 +159,7 @@ var previousSong = function() {
   }
 
   setSong(currentSongIndex);
+    currentSoundFile.play();
   updatePlayerBarSong();
 
   var lastSongNumber = getLastSongNumber(currentSongIndex);
