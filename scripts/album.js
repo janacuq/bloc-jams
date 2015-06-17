@@ -93,6 +93,48 @@ var setCurrentAlbum = function(album) {
 };
 
 
+
+var setCurrentTimeInPlayerBar = function() {
+
+    var $currentTime = $('.seek-control .current-time');    
+    
+    if(currentSoundFile) {
+    
+    currentSoundFile.bind('timeupdate', function(event) {
+        myTime = this.getTime();
+        $currentTime.text(filterTimeCode(myTime));
+    });
+         
+};
+    
+};
+    
+var setTotalTimeInPlayerBar = function(){
+    var $totalTime = $('.seek-control .total-time');
+    
+    if(currentSoundFile) {
+        
+        currentSoundFile.bind('timeupdate', function(event) {
+            myTime = this.getDuration();
+            
+            $totalTime.text(filterTimeCode(myTime));
+    });
+};
+};
+ 
+var filterTimeCode = function(timeInSeconds) {
+
+var time = parseFloat(timeInSeconds);
+var sec = parseInt(time);
+var min = 0;
+    while(sec>59) { sec -=60 ; min ++;}
+    
+
+        return min+':'+ sec;
+};
+
+
+
 var updateSeekBarWhileSongsPlays = function() {
 
     if(currentSoundFile) {
@@ -102,12 +144,14 @@ var updateSeekBarWhileSongsPlays = function() {
         var $seekBar = $('.seek-control .seek-bar');
         
         updateSeekPercentage($seekBar, seekBarFillRatio);
+        setCurrentTimeInPlayerBar();
     });
     
     }   
 };
 
-
+            
+            
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
 
     var offsetXPercent = seekBarFillRatio * 100;
@@ -222,7 +266,7 @@ var togglePlayFromPlayerBar = function() {
      $('.left-controls .play-pause').html(playerBarPlayButton);
      currentSoundFile.stop();
         
-    } else if (currentSoundFile.isPaused()) {
+    } else {
     $(this).innerHTML = playButtonTemplate;
     $('.left-controls .play-pause').html(playerBarPauseButton);
     currentSoundFile.play();
@@ -287,6 +331,7 @@ var updatePlayerBarSong = function() {
   $('.currently-playing .artist-name').text(currentAlbum.name);
   $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " +currentAlbum.name);  
   $('.left-controls .play-pause').html(playerBarPauseButton);
+  setTotalTimeInPlayerBar();
 };
 
 var currentAlbum = null;
