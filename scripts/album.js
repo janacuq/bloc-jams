@@ -3,7 +3,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     
     var template =
         '<tr class="album-view-song-item">'
-        + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber +'</td>'
+        + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + (songNumber+1) +'</td>'
         + '  <td class="song-item-title">' + songName + '</td>'
         + '  <td class="song-item-duration">' + songLength + '</td>'
         +'</tr>'
@@ -73,7 +73,7 @@ var setCurrentAlbum = function(album) {
     $albumSongList.empty();
         
     for (i = 0; i<album.songs.length; i++) {
-        var $newRow = createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
+        var $newRow = createSongRow(i, album.songs[i].name, album.songs[i].length);
         $albumSongList.append($newRow);
         }
 };
@@ -85,7 +85,7 @@ var trackIndex = function(album, song) {
 var setSong = function(songNumber) {
 
     currentlyPlayingSongNumber = parseInt(songNumber);
-    currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+    currentSongFromAlbum = currentAlbum.songs[songNumber];
 
 };
 
@@ -108,7 +108,7 @@ var nextSong = function() {
         currentSongIndex = 0;
     }
     
-    setSong(currentSongIndex + 1);
+    setSong(currentSongIndex);
     updatePlayerBarSong();
     
     var lastSongNumber = getLastSongNumber(currentSongIndex);
@@ -133,7 +133,7 @@ var nextSong = function() {
         currentSongIndex = currentAlbum.songs.length - 1;
     }
     
-    setSong(currentSongIndex + 1);
+    setSong(currentSongIndex);
     updatePlayerBarSong();
     
     var lastSongNumber = getLastSongNumber(currentSongIndex);
