@@ -9,7 +9,7 @@ myAppModule.config(['$stateProvider', '$locationProvider', function($stateProvid
     
     $stateProvider.state('landing', {
         url: '/landing',
-        controller: 'Landing.controller',
+        controller: 'Controllers/LandingController',
         temlplateUrl: '/templates/landing.html'
     });
     $stateProvider.state('album', {
