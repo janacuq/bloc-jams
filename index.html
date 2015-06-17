@@ -3,47 +3,38 @@
     <head>
         <title>Bloc Jams</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel= "stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
+        
         <link rel= "stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+        <link rel= "stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
+        <script src="/scripts/app.js"></script>
         <link rel="stylesheet" type="text/css" href='styles/normalize.css'>
         <link rel="stylesheet" type="text/css" href="styles/main.css">
         <link rel="stylesheet" type="text/css" href="styles/landing.css">
+         <link rel="stylesheet" type="text/css" href="styles/collection.css">
+        <link rel="stylesheet" type="text/css" href="styles/album.css">
+
+
     </head>
     <body>
     <body class="landing">
        
         <nav class="navbar"> <!-- navigation bar -->
             <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo" class="logo">
-            <a href="index.html" class="logo">
+            <a ui-sref="landing" class="logo">
             </a>
             <div class="links-container">
-            <a href="collection.html" class="navbar-link">collection</a>
+            <a ui-sref="collection" class="navbar-link">collection</a>
             </div>
         </nav>
+        <div ui-view></div>
         
-        <section class="hero-content"><!-- hero content -->
-            <h1 class="hero-title">Turn the music up!</h1>
-        </section>
-        
-        <section class="selling-points container"><!-- selling points -->
-            <div class="point column third">
-                    <span class="ion-music-note"></span>
-                    <h5 class="point-title">Choose your music</h5>
-                    <p class="point-description">The world is full of music; why should you have to listen to music that someone else chose?</p>
-            </div>
-             <div class="point column third">
-                <span class="ion-radio-waves"></span>
-                <h5 class="point-title">Unlimited, streaming, ad-free</h5>
-                    <p class="point-description">No arbitrary limits. No distraccions</p>
-            </div>
-            <div class="point column third">
-                    <span class="ion-iphone"></span>
-                    <h5 class="point-title">Mobile enabled</h5>
-                    <p class="point-description">Listen to your music on the go. This streaming service is available on all mobile platforms.</p>
-            </div>
-        </section>
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script src="scripts/landing.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
+        <script src="/scripts/landing.js"></script>
+         <script src="/scripts/collection.js"></script>
+          <script src="scripts/fixtures.js"></script>
+         <script src="scripts/album.js"></script>
     </body>
 </html>
