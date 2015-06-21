@@ -190,7 +190,7 @@ var setupSeekBars = function() {
         var $seekBar = $(this).parent();
         
         $(document).bind('mousemove.thumb', function(event) {
-            var offsetX = event.pageX = $seekBar.offset().left;
+            var offsetX = event.pageX - $seekBar.offset().left;
             var barWidth = $seekBar.width();
             var seekBarFillRatio = offsetX / barWidth;
             
