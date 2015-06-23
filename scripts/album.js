@@ -1,4 +1,4 @@
-
+/*
 var createSongRow = function(songNumber, songName, songLength) {
 
   var template =
@@ -9,7 +9,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     +'</tr>'
     ;
   var $row = $(template);
-
+*/
   var clickHandler = function() {
 
     var songNumber = parseInt($(this).attr('data-song-number'));
@@ -69,6 +69,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   return $row;
 };
 
+/*
 var setCurrentAlbum = function(album) {
 
   currentAlbum = album;
@@ -91,9 +92,9 @@ var setCurrentAlbum = function(album) {
     $albumSongList.append($newRow);
   }
 };
+*/
 
-
-
+/*
 var setCurrentTimeInPlayerBar = function() {
 
     var $currentTime = $('.seek-control .current-time');    
@@ -121,7 +122,7 @@ var setTotalTimeInPlayerBar = function(){
     });
 };
 };
- 
+ */
 var filterTimeCode = function(timeInSeconds) {
 
 var time = parseFloat(timeInSeconds);
@@ -215,6 +216,7 @@ var setupSeekBars = function() {
    
 };
 
+/*
 var trackIndex = function(album, song) {
   return album.songs.indexOf(song);
 };
@@ -234,7 +236,7 @@ var setSong = function(songNumber) {
     });
     setVolume(currentVolume);
 };
-
+*/
 
 var seek = function(time) {
 
@@ -256,7 +258,7 @@ var getSongNumberCell = function(number) {
 
 };
 
-
+/*
 var togglePlayFromPlayerBar = function() {
     
     
@@ -325,6 +327,8 @@ var previousSong = function() {
   $lastSongNumberCell.html(lastSongNumber);
 
 };
+
+*/
 var updatePlayerBarSong = function() {
 
   $('.currently-playing .song-name').text(currentSongFromAlbum.name);

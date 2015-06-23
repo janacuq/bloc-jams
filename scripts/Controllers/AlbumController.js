@@ -1,41 +1,85 @@
-myAppModule.controller('AlbumController', ['$scope', function($scope) {
+myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($scope, MusicPlayer) {
          
-        $scope.album = {
-            name: 'The Colors',
-            artist: 'Pablo Picasso',
-            label: 'pepa',
-            year: '1881',
-            albumArtUrl: 'assets/images/album_covers/01.png',
-            songs: [
-        { 
-        name: 'Blue',
-        length: '4:26',
-        audioUrl: '/assets/music/blue' 
-        },
-        { 
-        name: 'Green',
-        length: '3:14', 
-        audioUrl: '/assets/music/green'
-        },
-        { 
-         name: 'Red',
-         length: '5:01',
-         audioUrl: '/assets/music/red' 
-        },
-        { 
-        name: 'Pink',
-        length: '3:21',
-        audioUrl: '/assets/music/pink'
-        },
-        { 
-        name: 'Magenta',
-        length: '2:15',
-        audioUrl: '/assets/music/magenta'
-        }
+    $scope.totalTime = '-:--';
+    $scope.currentTime = '-:--';
+    $scope.album = MusicPlayer.currentAlbum;
+       
+    $scope.mouseOver = function($event) {
+        var td = $event.target;
+        $(td).find('div').hide();
+        $(td).find('a').show();
+        $(td).find('.ion-play').show();
+        $(td).find('.ion-pause').hide();
+    };
+    
+    $scope.mouseLeave = function($event) {
+        var td = $event.target;
+        $(td).find('div').show();
+        $(td).find('a').hide();
         
-    ]
-           
-};
+    };
     
-    
+    $scope.play = function(songNumber) {
+        if(songNumber) {
+        MusicPlayer.setSong(songNumber);
+       
+        } else {
+           MusicPlayer.play();
+        }
+        $scope.playing = true; 
+        
+        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+            var self = this;
+        $scope.$apply(function(){
+        $scope.totalTime = self.getDuration();
+             });
+        });
+         MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+            var self = this;
+            $scope.$apply(function() {
+                $scope.currentTime = self.getTime();
+                });
+         });                                  
+ };
+                                           
+    $scope.pauseSong = function() {
+        MusicPlayer.pause();
+        $scope.playing = false;
+
+    };   
+    $scope.nextSong = function() {
+        MusicPlayer.next();
+        
+        
+        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+            var self = this;
+             $scope.$apply(function(){
+                 $scope.totalTime = self.getDuration();
+             });
+        });
+        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+            var self = this;
+            $scope.$apply(function() {
+                $scope.currentTime = self.getTime();
+                });
+         });
+    };
+    $scope.previousSong = function() {
+        MusicPlayer.previous();  
+          MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+            var self = this;
+             $scope.$apply(function(){
+                 $scope.totalTime = self.getDuration();
+             });
+         });
+        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+            var self = this;
+            $scope.$apply(function() {
+                $scope.currentTime = self.getTime();
+                });
+         });
+    };
+  
+       
  }]);
+
