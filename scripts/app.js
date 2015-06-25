@@ -27,3 +27,15 @@ myAppModule.config(['$stateProvider', '$locationProvider', '$urlRouterProvider',
     
 }]);
 
+myAppModule.filter('timeCode', function() {
+    
+    return function(x) {
+        
+        var time = parseFloat(x);
+        var sec = parseInt(time);
+        var min = 0;
+        while(sec>59) { sec -=60 ; min ++;}
+        return min+':'+ sec;
+        };
+    
+});

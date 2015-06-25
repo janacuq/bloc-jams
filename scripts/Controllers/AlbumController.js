@@ -3,6 +3,7 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
     $scope.totalTime = '-:--';
     $scope.currentTime = '-:--';
     $scope.album = MusicPlayer.currentAlbum;
+    $scope.player = MusicPlayer;
        
     $scope.mouseOver = function($event) {
         var td = $event.target;
@@ -22,13 +23,7 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
     $scope.play = function(songNumber) {
         if(songNumber) {
         MusicPlayer.setSong(songNumber);
-       
-        } else {
-           MusicPlayer.play();
-        }
-        $scope.playing = true; 
-        
-        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
+       MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
             var self = this;
         $scope.$apply(function(){
         $scope.totalTime = self.getDuration();
@@ -39,7 +34,12 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
             $scope.$apply(function() {
                 $scope.currentTime = self.getTime();
                 });
-         });                                  
+         }); 
+        } else {
+           MusicPlayer.play();
+        }
+        $scope.playing = true; 
+                                         
  };
                                            
     $scope.pauseSong = function() {
@@ -49,7 +49,7 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
     };   
     $scope.nextSong = function() {
         MusicPlayer.next();
-        
+        $scope.playing = true; 
         
         MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
             var self = this;
@@ -65,7 +65,8 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
          });
     };
     $scope.previousSong = function() {
-        MusicPlayer.previous();  
+        MusicPlayer.previous(); 
+        $scope.playing = true; 
           MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
             var self = this;
              $scope.$apply(function(){

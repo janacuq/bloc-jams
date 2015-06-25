@@ -1,6 +1,6 @@
 myAppModule.service('MusicPlayer', function() {
     var currentlyPlayingSongNumber;
-    var currentVolume = 80;
+    
     var currentAlbum = {
             name: 'The Colors',
             artist: 'Pablo Picasso',
@@ -39,6 +39,8 @@ myAppModule.service('MusicPlayer', function() {
     return {
         currentAlbum: currentAlbum,
         currentSoundFile: null,
+        volume: 80,
+        currentSong: null,
         play: function() {
             
             this.currentSoundFile.play();
@@ -54,13 +56,14 @@ myAppModule.service('MusicPlayer', function() {
             }
            
          this.songNumber = songNumber;
+            this.currentSong = this.currentAlbum.songs[this.songNumber];
           currentlyPlayingSongNumber = parseInt(songNumber);
           currentSongFromAlbum = currentAlbum.songs[songNumber];
             this.currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl,                {
                 formats: ['mp3'],
                 preload: true
             });
-            //this.setVolume(currentVolume);
+          
           this.currentSoundFile.play();
         },
         next: function() {
@@ -90,7 +93,7 @@ myAppModule.service('MusicPlayer', function() {
             this.setSong(currentTrack);
         }
         
-    
+        
         }
     
 });

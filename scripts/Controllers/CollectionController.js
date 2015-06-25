@@ -1,4 +1,4 @@
-myAppModule.controller('CollectionController', ['$scope', function($scope) {
+myAppModule.controller('CollectionController', ['$scope','MusicPlayer', function($scope, MusicPlayer) {
         
     $scope.albums = [
     {

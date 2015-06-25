@@ -122,7 +122,7 @@ var setTotalTimeInPlayerBar = function(){
     });
 };
 };
- */
+
 var filterTimeCode = function(timeInSeconds) {
 
 var time = parseFloat(timeInSeconds);
@@ -134,7 +134,7 @@ var min = 0;
         return min+':'+ sec;
 };
 
-
+ */
 
 var updateSeekBarWhileSongsPlays = function() {
 
