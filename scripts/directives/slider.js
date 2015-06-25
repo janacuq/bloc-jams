@@ -5,15 +5,9 @@
            templateUrl: 'scripts/directives/slider.html',
            link: function (scope, element, attributes) {
 
-
-               var updateSeekPercentage = function (element, event) {
-
-                   var set = event.pageX - element.offset.left;
-                   var barWidth = element.width();
-                   var seekBarFillRatio = set / barWidth;
-
+               var $element = $('.seek-bar')
+               var updateSeekPercentage = function (seekBarFillRatio) {
                    var offsetXPercent = seekBarFillRatio * 100;
-
                    offsetXPercent = Math.max(0, offsetXPercent);
                    offsetXPercent = Math.min(100, offsetXPercent);
 
@@ -21,24 +15,26 @@
 
                };
 
-           }
+               scope.seekFillRatio = function ($event) {
+                   var set = event.pageX - $element.offset.left;
+                   var barWidth = $element.width();
+                   var seekBarFillRatio = set / barWidth;
+                   
+                   return updateSeekPercentage(seekBarFillRatio);
 
-
-            scope.seekFillRatio = function ($event) {
-                updateSeekPercentage(element, event);
-           };
-
-           scope.fillStyle = function () {
-               return {
-                   width: updateSeekPercentage()
                };
-           }
 
-           scope.thumbStyle = function () {
-               return {
-                   left: updateSeekPercentage()
-               };
-           }
+               scope.fillStyle = function () {
+                   return {
+                       width: updateSeekPercentage()
+                   };
+               }
 
+               scope.thumbStyle = function () {
+                   return {
+                       left: updateSeekPercentage()
+                   };
+               }
+           }
        }
    }]);
