@@ -15,8 +15,8 @@
 
                };
 
-               scope.seekFillRatio = function ($event) {
-                   var set = event.pageX - $element.offset.left;
+               scope.seekFillRatio = function (event) {
+                   var set = event.pageX - $element.offset().left;
                    var barWidth = $element.width();
                    var seekBarFillRatio = set / barWidth;
                    
@@ -35,6 +35,22 @@
                        left: updateSeekPercentage()
                    };
                }
+               scope.press = function(e) {
+                 var percentageString = scope.seekFillRatio(e);
+                 $element.find('.fill').width(percentageString);
+                 $element.find('.thumb').css({left: percentageString});
+               }
+
+               scope.mousedown = function(event) {
+                 event.preventDefault();
+                 $(document).on('mousemove', scope.press);
+                 $(document).on('mouseup', scope.mouseup);
+               };
+
+               scope.mouseup = function() {
+                 $(document).off('mousemove', scope.press);
+                 $(document).off('mouseup', scope.mouseup);
+               };
            }
        }
    }]);
