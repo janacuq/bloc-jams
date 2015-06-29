@@ -1,25 +1,29 @@
-   myAppModule.directive('mySlider', ['MusicPlayer', function (MusicPlayer) {
+   myAppModule.directive('mySlider', function () {
        return {
            restrict: 'E',
-           scope: {},
+           scope: {
+           info: '=info'
+           },
            templateUrl: 'scripts/directives/slider.html',
            link: function (scope, element, attributes) {
 
-               var $element = $('.seek-bar')
+               var $element = $(element)
+               
                var updateSeekPercentage = function (seekBarFillRatio) {
                    var offsetXPercent = seekBarFillRatio * 100;
                    offsetXPercent = Math.max(0, offsetXPercent);
                    offsetXPercent = Math.min(100, offsetXPercent);
 
                    return offsetXPercent + '%';
-
                };
 
                scope.seekFillRatio = function (event) {
                    var set = event.pageX - $element.offset().left;
-                   var barWidth = $element.width();
-                   var seekBarFillRatio = set / barWidth;
                    
+                   var barWidth = $element.children().width();
+                   var seekBarFillRatio = set / barWidth;
+                  
+
                    return updateSeekPercentage(seekBarFillRatio);
 
                };
@@ -35,22 +39,25 @@
                        left: updateSeekPercentage()
                    };
                }
-               scope.press = function(e) {
-                 var percentageString = scope.seekFillRatio(e);
-                 $element.find('.fill').width(percentageString);
-                 $element.find('.thumb').css({left: percentageString});
+
+               scope.press = function (e) {
+                   var percentageString = scope.seekFillRatio(e);
+                   $element.find('.fill').width(percentageString);
+                   $element.find('.thumb').css({
+                       left: percentageString
+                   });
                }
 
-               scope.mousedown = function(event) {
-                 event.preventDefault();
-                 $(document).on('mousemove', scope.press);
-                 $(document).on('mouseup', scope.mouseup);
+               scope.mousedown = function (event) {
+                   event.preventDefault();
+                   $(document).on('mousemove', scope.press);
+                   $(document).on('mouseup', scope.mouseup);
                };
 
-               scope.mouseup = function() {
-                 $(document).off('mousemove', scope.press);
-                 $(document).off('mouseup', scope.mouseup);
+               scope.mouseup = function () {
+                   $(document).off('mousemove', scope.press);
+                   $(document).off('mouseup', scope.mouseup);
                };
            }
        }
-   }]);
+   });

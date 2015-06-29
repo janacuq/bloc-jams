@@ -63,8 +63,15 @@ myAppModule.service('MusicPlayer', function() {
                 formats: ['mp3'],
                 preload: true
             });
-          
+          this.currentSoundFile.setVolume(this.volume);
           this.currentSoundFile.play();
+        },
+        
+        setVolume: function(volume) {
+            if (this.currentSoundFile) {
+                this.currentSoundFile.setVolume(volume);
+            }
+            this.volume = volume;
         },
         next: function() {
             
