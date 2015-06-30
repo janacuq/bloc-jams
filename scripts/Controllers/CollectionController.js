@@ -1,5 +1,7 @@
 myAppModule.controller('CollectionController', ['$scope','MusicPlayer', function($scope, MusicPlayer) {
         
+    
+    
     $scope.albums = [
     {
     name: 'The Colors',

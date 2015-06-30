@@ -35,7 +35,12 @@ myAppModule.filter('timeCode', function() {
         var sec = parseInt(time);
         var min = 0;
         while(sec>59) { sec -=60 ; min ++;}
+        
+        if(isNaN(sec)){
+            return '--:--'
+        } else {
         return min+':'+ sec;
+        }
         };
     
 });
