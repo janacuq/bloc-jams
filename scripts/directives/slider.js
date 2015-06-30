@@ -8,7 +8,7 @@
            link: function (scope, element, attributes) {
 
                var $element = $(element);
-               
+               window.skope = scope;
                scope.updateSeekPercentage = function(ratio) {
                    var offsetXPercent = ratio * 100;
                    offsetXPercent = Math.max(0, offsetXPercent);
@@ -52,6 +52,10 @@
                    $(document).off('mousemove', scope.press);
                    $(document).off('mouseup', scope.mouseup);
                };
+               
+               var percentageString = scope.updateSeekPercentage(scope.info);
+               $element.find('.fill').width(percentageString);
+               $element.find('.thumb').css({left: percentageString});
            }
        }
    });

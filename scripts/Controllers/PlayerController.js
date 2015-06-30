@@ -1,8 +1,8 @@
 myAppModule.controller('PlayerController', ['$scope', 'MusicPlayer', function ($scope, MusicPlayer) {
   window.skope = $scope;
   console.log('player controller initialized');
-  $scope.volume = 0.9;
-  $scope.progress = 0.2;
+  $scope.volume = MusicPlayer.volume / 100;
+  $scope.progress = 0;
 
   $scope.$watch('progress', function(newValue, oldValue, scope) {
     var file = MusicPlayer.currentSoundFile;
