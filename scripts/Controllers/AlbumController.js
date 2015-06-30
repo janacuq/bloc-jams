@@ -21,7 +21,7 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
     };
     
     $scope.play = function(songNumber) {
-        if(songNumber) {
+        if(songNumber >= 0) {
         MusicPlayer.setSong(songNumber);
        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
             var self = this;

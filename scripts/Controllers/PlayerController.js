@@ -1,6 +1,5 @@
 myAppModule.controller('PlayerController', ['$scope', 'MusicPlayer', function ($scope, MusicPlayer) {
-  window.skope = $scope;
-  console.log('player controller initialized');
+
   $scope.volume = MusicPlayer.volume / 100;
   $scope.progress = 0;
 
