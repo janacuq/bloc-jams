@@ -114,6 +114,13 @@ myAppModule.service('MusicPlayer', function() {
 
     addListener: function(eventName, fn){
       this.listeners.push([eventName, fn]);
+    },
+    getProgress: function() {
+        if(this.currentSoundFile) {
+        return this.currentSoundFile.getTime() / this.currentSoundFile.getDuration();
+        } else {
+            return 0;
+        }
     }
   }
 

@@ -20,66 +20,13 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
         
     };
     
-    $scope.play = function(songNumber) {
-        if(songNumber >= 0) {
-        MusicPlayer.setSong(songNumber);
-       MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
-            var self = this;
-        $scope.$apply(function(){
-        $scope.totalTime = self.getDuration();
-             });
-        });
-         MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
-            var self = this;
-            $scope.$apply(function() {
-                $scope.currentTime = self.getTime();
-                });
-         }); 
-        } else {
-           MusicPlayer.play();
-        }
-        $scope.playing = true; 
-                                         
- };
-                                           
-    $scope.pauseSong = function() {
-        MusicPlayer.pause();
-        $scope.playing = false;
-
-    };   
-    $scope.nextSong = function() {
-        MusicPlayer.next();
-        $scope.playing = true; 
-        
-        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
-            var self = this;
-             $scope.$apply(function(){
-                 $scope.totalTime = self.getDuration();
-             });
-        });
-        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
-            var self = this;
-            $scope.$apply(function() {
-                $scope.currentTime = self.getTime();
-                });
-         });
-    };
-    $scope.previousSong = function() {
-        MusicPlayer.previous(); 
-        $scope.playing = true; 
-          MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
-            var self = this;
-             $scope.$apply(function(){
-                 $scope.totalTime = self.getDuration();
-             });
-         });
-        MusicPlayer.currentSoundFile.bind('timeupdate', function(event) {
-            var self = this;
-            $scope.$apply(function() {
-                $scope.currentTime = self.getTime();
-                });
-         });
-    };
+     $scope.play = function(songNumber) {
+         $scope.$broadcast('myCustomEvent', {
+        someProp: 'Sending you an Object!' // send whatever you want
+});
+   
+     };
+  
   
        
  }]);
