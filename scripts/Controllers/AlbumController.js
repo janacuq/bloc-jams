@@ -22,7 +22,7 @@ myAppModule.controller('AlbumController', ['$scope', 'MusicPlayer', function($sc
     
      $scope.play = function(songNumber) {
          $scope.$broadcast('myCustomEvent', {
-        someProp: 'Sending you an Object!' // send whatever you want
+        someProp: songNumber // send whatever you want
 });
    
      };
