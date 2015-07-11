@@ -7,7 +7,8 @@ myAppModule.controller('PlayerController', ['$scope', 'MusicPlayer', function ($
     $scope.player = MusicPlayer;
     
     $scope.$on('myCustomEvent', function (event, data) {
-  console.log(MusicPlayer.currentSoundFile); // 'Data to send'
+  console.log(data.songNumber); // 'Data to send'
+        $scope.play(data.songNumber);
 });
     
     
